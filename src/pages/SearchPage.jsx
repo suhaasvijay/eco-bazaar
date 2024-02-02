@@ -70,7 +70,7 @@ export default function SearchPage() {
           {loader ? (
             <Loader />
           ) : (
-            <div className="grid justify-between grid-cols-3 mt-10 gap-7">
+            <div className="grid justify-between grid-cols-1 mx-auto mt-10 md:grid-cols-2 lg:grid-cols-3 gap-7">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

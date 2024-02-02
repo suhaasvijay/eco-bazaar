@@ -48,10 +48,10 @@ export default function ProductPage() {
         <Loader />
       ) : (
         <>
-          <div className="grid grid-cols-2 mt-14">
+          <div className="grid grid-cols-1 gap-y-10 md:grid-cols-2 mt-14">
             {/* Carousel */}
             <Carousel
-              className="w-[600px]"
+              className="max-w-[600px]"
               prevArrow={({ handlePrev }) => (
                 <IconButton
                   variant="text"
@@ -102,7 +102,7 @@ export default function ProductPage() {
               )}
             >
               {images.map((image, index) => (
-                <div key={index} className="h-[500px]">
+                <div key={index} className="max-h-[500px]">
                   <img
                     src={image}
                     alt="image 1"
@@ -113,7 +113,7 @@ export default function ProductPage() {
             </Carousel>
 
             {/* Details */}
-            <div className="ml-10">
+            <div className="md:ml-10">
               {/* Price and description */}
               <div className="flex flex-col gap-2 ">
                 <p className="text-sm font-semibold text-gray-800 uppercase">
@@ -205,12 +205,12 @@ export default function ProductPage() {
           </div>
 
           {/* Related Products */}
-          <div className="my-10">
+          <div className="mx-auto my-10">
             <p className="my-10 text-3xl font-bold text-gray-800">
               Related Products
             </p>
             <button onClick={() => handleClick()}>
-              <div className="grid justify-between grid-cols-3 gap-7">
+              <div className="grid justify-between grid-cols-1 mx-auto md:grid-cols-2 lg:grid-cols-3 gap-7">
                 {relatedProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
