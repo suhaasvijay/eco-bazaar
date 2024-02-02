@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import { Carousel, IconButton } from "@material-tailwind/react";
 import ProductCard from "../components/ProductCard";
 

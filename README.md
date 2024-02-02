@@ -1,8 +1,21 @@
-# React + Vite
+# Ecobazaar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ecobazaar, a compact e-commerce platform, is developed using React. It showcases an array of items, each with its own detailed page. Additionally, it incorporates pagination for easy navigation and a product search feature for quick and convenient shopping.
 
-Currently, two official plugins are available:
+A brief description about this project:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+
+- React with Vite
+- Tailwind CSS
+
+## Libraries Used
+
+- React Icons
+- React Router DOM
+- React Paginate
+- @material-tailwind/react
+
+## Credits
+
+The footer of this website was inspired by the design found at Website Demos [https://websitedemos.net/t-shirts-store-04/].
