@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@material-tailwind/react";
-import ProductCard from "../components/ProductCard"; // Import ProductCard
+import ProductCard from "../components/ProductCard";
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
@@ -33,22 +33,28 @@ export default function SearchPage() {
     <div>
       <Input
         type="search"
-        placeholder="Search"
+        placeholder="Search here..."
         value={query}
         onChange={handleSearch}
         containerProps={{
           className: "min-w-[288px]",
         }}
-        className=" !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
+        className=" !border-t-blue-gray-300 pl-9  placeholder:text-blue-gray-300 focus:!border-blue-gray-300 "
         labelProps={{
           className: "before:content-none after:content-none",
         }}
       />
-      <div className="flex flex-wrap gap-2">
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      {filteredProducts.length === 0 ? (
+        <div className="flex items-center justify-center h-[400px]">
+          <p>No products found</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-3 justify-between gap-7 mt-10">
+          {filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

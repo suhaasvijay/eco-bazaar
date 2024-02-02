@@ -19,21 +19,13 @@ export default function ProductPage() {
   }, []);
 
   return (
-    <>
-      <h1 className="text-3xl font-bold">{productData.title}</h1>
-      <p>{productData.description}</p>
-      <div className="flex gap-1 items-end">
-        <p className="text-xl">Price : {productData.price}</p>
-        <p className="text-sm">-{productData.discountPercentage}%</p>
-      </div>
-      <p>{productData.stock}</p>
-
+    <div className="grid grid-cols-2 mt-20">
       <Carousel
-        className="rounded-xl w-[400px]"
+        className="rounded-xl w-[600px] border border-gray-100"
         prevArrow={({ handlePrev }) => (
           <IconButton
             variant="text"
-            color="red"
+            color="purple"
             size="lg"
             onClick={handlePrev}
             className="!absolute top-2/4 left-4 -translate-y-2/4"
@@ -57,7 +49,7 @@ export default function ProductPage() {
         nextArrow={({ handleNext }) => (
           <IconButton
             variant="text"
-            color="red"
+            color="purple"
             size="lg"
             onClick={handleNext}
             className="!absolute top-2/4 !right-4 -translate-y-2/4"
@@ -80,14 +72,24 @@ export default function ProductPage() {
         )}
       >
         {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt="image 1"
-            className="h-full w-full object-cover"
-          />
+          <div key={index} className="h-[500px]">
+            <img
+              src={image}
+              alt="image 1"
+              className="object-fill w-full h-full "
+            />
+          </div>
         ))}
       </Carousel>
-    </>
+      <div className="ml-10">
+        <h1 className="text-3xl font-bold">{productData.title}</h1>
+        <p>{productData.description}</p>
+        <div className="flex gap-1 items-end">
+          <p className="text-xl">Price : {productData.price}</p>
+          <p className="text-sm">-{productData.discountPercentage}%</p>
+        </div>
+        <p>{productData.stock}</p>
+      </div>
+    </div>
   );
 }
