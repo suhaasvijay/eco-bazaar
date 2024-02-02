@@ -29,21 +29,30 @@ export default function SearchPage() {
     setQuery(e.target.value);
   };
 
+  const handleClear = () => {
+    setQuery("");
+  };
+
   return (
     <div>
-      <Input
-        type="search"
-        placeholder="Search here..."
-        value={query}
-        onChange={handleSearch}
-        containerProps={{
-          className: "min-w-[288px]",
-        }}
-        className=" !border-t-blue-gray-300 pl-9  placeholder:text-blue-gray-300 focus:!border-blue-gray-300 "
-        labelProps={{
-          className: "before:content-none after:content-none",
-        }}
-      />
+      <div className="flex justify-between gap-5">
+        <input
+          value={query}
+          onChange={handleSearch}
+          className=" w-full bg-violet-100 text-lg border-2 border-gray-300 p-3 placeholder-purple-400 focus:text-violet-950 focus:border-purple-300 focus:outline-none focus:ring-0"
+          placeholder="Search here..."
+        />
+        {query.length === 0 ? (
+          <></>
+        ) : (
+          <button
+            className="p-3 bg-purple-400 text-white font-bold "
+            onClick={() => handleClear()}
+          >
+            CLEAR
+          </button>
+        )}
+      </div>
       {filteredProducts.length === 0 ? (
         <div className="flex items-center justify-center h-[400px]">
           <p>No products found</p>

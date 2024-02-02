@@ -21,7 +21,7 @@ export default function ProductPage() {
   return (
     <div className="grid grid-cols-2 mt-20">
       <Carousel
-        className="rounded-xl w-[600px] border border-gray-100"
+        className="w-[600px]"
         prevArrow={({ handlePrev }) => (
           <IconButton
             variant="text"
@@ -83,12 +83,17 @@ export default function ProductPage() {
       </Carousel>
       <div className="ml-10">
         <h1 className="text-3xl font-bold">{productData.title}</h1>
-        <p>{productData.description}</p>
-        <div className="flex gap-1 items-end">
+        <div className="flex gap-4 items-end">
           <p className="text-xl">Price : {productData.price}</p>
-          <p className="text-sm">-{productData.discountPercentage}%</p>
+          <p className="text-sm pb-1">
+            ({productData.discountPercentage}% off)
+          </p>
         </div>
-        <p>{productData.stock}</p>
+        <p>Description : {productData.description}</p>
+        <p>Rating : {productData.rating}</p>
+        <p>Stock : {productData.stock}</p>
+        <p>Brand : {productData.brand}</p>
+        <p>Category : {productData.category}</p>
       </div>
     </div>
   );
