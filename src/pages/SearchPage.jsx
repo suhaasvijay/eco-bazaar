@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 
 import ProductCard from "../components/ProductCard";
+import Loader from "../components/Loader";
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
   const [products, setAllProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [loader, setLoader] = useState(true);
 
   //Api call for all products
   useEffect(() => {
@@ -22,6 +24,7 @@ export default function SearchPage() {
           product.title.toLowerCase().includes(query.toLowerCase())
         )
       );
+      setLoader(false);
     } else {
       setFilteredProducts([]);
     }
@@ -37,34 +40,43 @@ export default function SearchPage() {
 
   return (
     <div>
+      {/* Search Bar */}
       <div className="flex justify-between gap-5">
         <input
           value={query}
           onChange={handleSearch}
-          className=" w-full bg-violet-100 text-lg border-2 border-gray-300 p-3 placeholder-purple-400 focus:text-violet-950 focus:border-purple-300 focus:outline-none focus:ring-0"
+          className="w-full p-3 text-lg placeholder-purple-400 border-2 border-gray-300 bg-violet-100 focus:text-violet-950 focus:border-purple-300 focus:outline-none focus:ring-0"
           placeholder="Search here..."
         />
         {query.length === 0 ? (
           <></>
         ) : (
           <button
-            className="p-3 bg-purple-400 text-white font-bold "
+            className="p-3 font-bold text-white bg-purple-400 "
             onClick={() => handleClear()}
           >
             CLEAR
           </button>
         )}
       </div>
+
+      {/* Products */}
       {filteredProducts.length === 0 ? (
         <div className="flex items-center justify-center h-[400px]">
           <p>No products found</p>
         </div>
       ) : (
-        <div className="grid grid-cols-3 justify-between gap-7 mt-10">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        <>
+          {loader ? (
+            <Loader />
+          ) : (
+            <div className="grid justify-between grid-cols-3 mt-10 gap-7">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   );
