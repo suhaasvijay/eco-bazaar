@@ -41,17 +41,17 @@ export default function Footer() {
           {/* Social */}
           <div className="flex gap-10">
             <img
-              src="../../public/social/facebook.svg"
+              src="/public/social/facebook.svg"
               className="w-[30px] h-[30px]"
               alt=""
             />
             <img
-              src="../../public/social/instagram.svg"
+              src="/public/social/instagram.svg"
               alt=""
               className="w-[30px] h-[30px]"
             />
             <img
-              src="../../public/social/twitter.svg"
+              src="/public/social/twitter.svg"
               alt=""
               className="w-[30px] h-[30px]"
             />
