@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Input } from "@material-tailwind/react";
 import ProductCard from "../components/ProductCard";
 
 export default function SearchPage() {
