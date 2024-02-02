@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import SearchPage from "./pages/SearchPage";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/:id" element={<ProductPage />} />
         <Route path="/search" element={<SearchPage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
