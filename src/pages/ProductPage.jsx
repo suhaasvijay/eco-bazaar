@@ -1,7 +1,7 @@
+import { Carousel, IconButton } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Carousel, IconButton } from "@material-tailwind/react";
 import ProductCard from "../components/ProductCard";
 
 export default function ProductPage() {
@@ -10,11 +10,7 @@ export default function ProductPage() {
 
   const [productData, setProductData] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-  console.log(
-    "%c 🍞 relatedProducts: ",
-    "font-size:12px;background-color: #B03734;color:#fff;",
-    relatedProducts
-  );
+
 
   const [images, setImages] = useState([]);
   const [count, setCount] = useState(0);
@@ -23,6 +19,7 @@ export default function ProductPage() {
     window.location.reload();
   };
 
+  //Api call for product based on id
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
       .then((response) => response.json())
@@ -32,6 +29,7 @@ export default function ProductPage() {
       });
   }, []);
 
+  //Api call for related products
   useEffect(() => {
     fetch(
       `https://dummyjson.com/products/category/${productData.category}?limit=6`

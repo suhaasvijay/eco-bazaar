@@ -8,6 +8,7 @@ export default function HomePage() {
   const itemsPerPage = 9;
   const [totalPages, setTotalPages] = useState(0);
 
+  //Api call for all products with pagination
   useEffect(() => {
     const skip = currentPage * itemsPerPage;
     fetch(`https://dummyjson.com/products?skip=${skip}&limit=${itemsPerPage}`)

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import ProductCard from "../components/ProductCard";
 
 export default function SearchPage() {
@@ -6,12 +7,14 @@ export default function SearchPage() {
   const [products, setAllProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+  //Api call for all products
   useEffect(() => {
     fetch("https://dummyjson.com/products")
       .then((response) => response.json())
       .then((data) => setAllProducts(data.products || []));
   }, []);
 
+  //Setting filtered products
   useEffect(() => {
     if (query !== "") {
       setFilteredProducts(
