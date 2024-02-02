@@ -6,7 +6,7 @@ export default function Navbar() {
     <div>
       <div className="flex justify-between mb-10 p-4 border  items-center border-gray-300">
         <Link to={"/"} className="rounded-xl px-4 py-2">
-          <img src="/public/logo1.png" alt="logo" className="h-[35px]" />
+          <img src="/logo1.png" alt="logo" className="h-[35px]" />
         </Link>
         <div className="flex gap-4">
           <Link to={"/"} className="rounded-xl px-4 py-2">
