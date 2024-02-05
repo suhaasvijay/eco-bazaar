@@ -7,11 +7,12 @@ export default function SearchPage() {
   const [query, setQuery] = useState("");
   const [products, setAllProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
+  const [noProductFound, setNoProductFound] = useState(false);
 
   //Api call for all products
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
+    fetch("https://dummyjson.com/products?limit=100")
       .then((response) => response.json())
       .then((data) => setAllProducts(data.products || []));
   }, []);
@@ -19,24 +20,18 @@ export default function SearchPage() {
   //Setting filtered products
   useEffect(() => {
     if (query !== "") {
-      setFilteredProducts(
-        products.filter((product) =>
-          product.title.toLowerCase().includes(query.toLowerCase())
-        )
+      setLoader(true);
+      const filtered = products.filter((product) =>
+        product.title.toLowerCase().includes(query.toLowerCase())
       );
+      setFilteredProducts(filtered);
+      setNoProductFound(filtered.length === 0);
       setLoader(false);
     } else {
       setFilteredProducts([]);
+      setNoProductFound(false);
     }
   }, [query]);
-
-  const handleSearch = (e) => {
-    setQuery(e.target.value);
-  };
-
-  const handleClear = () => {
-    setQuery("");
-  };
 
   return (
     <div>
@@ -44,7 +39,7 @@ export default function SearchPage() {
       <div className="flex justify-between gap-5">
         <input
           value={query}
-          onChange={handleSearch}
+          onChange={(e) => setQuery(e.target.value)}
           className="w-full p-3 text-lg placeholder-purple-400 border-2 border-gray-300 bg-violet-100 focus:text-violet-950 focus:border-purple-300 focus:outline-none focus:ring-0"
           placeholder="Search here..."
         />
@@ -53,7 +48,7 @@ export default function SearchPage() {
         ) : (
           <button
             className="p-3 font-bold text-white bg-purple-400 "
-            onClick={() => handleClear()}
+            onClick={() => setQuery("")}
           >
             CLEAR
           </button>
@@ -61,23 +56,37 @@ export default function SearchPage() {
       </div>
 
       {/* Products */}
-      {filteredProducts.length === 0 ? (
-        <div className="flex items-center justify-center h-[400px]">
-          <p>No products found</p>
-        </div>
-      ) : (
-        <>
-          {loader ? (
-            <Loader />
-          ) : (
-            <div className="grid justify-between grid-cols-1 mx-auto mt-10 md:grid-cols-2 lg:grid-cols-3 gap-7">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          )}
-        </>
-      )}
+      <>
+        {loader ? (
+          <Loader />
+        ) : (
+          <>
+            {noProductFound ? (
+              <div className="flex items-center justify-center h-[400px]">
+                <p className="text-3xl font-bold text-red-400">
+                  No product found
+                </p>
+              </div>
+            ) : (
+              <>
+                {query.length === 0 ? (
+                  <div className="flex items-center justify-center h-[400px]">
+                    <p className="text-3xl font-bold text-purple-400">
+                      Search for you product
+                    </p>
+                  </div>
+                ) : (
+                  <div className="grid justify-between grid-cols-1 mx-auto mt-10 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                    {filteredProducts.map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
+          </>
+        )}
+      </>
     </div>
   );
 }

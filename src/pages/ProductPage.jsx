@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import Loader from "../components/Loader";
 
+const colors = ["Red", "Yellow", "Purple"];
+
 export default function ProductPage() {
   const params = useParams();
   const id = params.id;
@@ -12,13 +14,8 @@ export default function ProductPage() {
   const [productData, setProductData] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loader, setLoader] = useState(true);
-
   const [images, setImages] = useState([]);
   const [count, setCount] = useState(0);
-
-  const handleClick = () => {
-    window.location.reload();
-  };
 
   //Api call for product based on id
   useEffect(() => {
@@ -33,14 +30,19 @@ export default function ProductPage() {
 
   //Api call for related products
   useEffect(() => {
-    fetch(
-      `https://dummyjson.com/products/category/${productData.category}?limit=6`
-    )
+    fetch(`https://dummyjson.com/products/category/${productData.category}`)
       .then((response) => response.json())
       .then((data) => {
         setRelatedProducts(data.products || {});
       });
   }, [productData]);
+
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
+  };
 
   return (
     <div className="flex flex-col gap-19">
@@ -121,7 +123,9 @@ export default function ProductPage() {
                 </p>
                 <h1 className="text-3xl font-bold">{productData.title}</h1>
                 <div className="flex items-end gap-1">
-                  <p className="text-[24px] font-bold ">${productData.price}</p>
+                  <p className="text-[24px] font-bold text-purple-500">
+                    ${productData.price}
+                  </p>
                   <p className="text-[20px] font-bold ">
                     ({productData.discountPercentage}% off)
                   </p>
@@ -141,15 +145,14 @@ export default function ProductPage() {
                   Color
                 </p>
                 <div className="flex items-center justify-start gap-2 mt-4">
-                  <div className="p-2 w-[120px] border border-gray-500 flex justify-center ">
-                    <p>Red</p>
-                  </div>
-                  <div className="p-2 w-[120px] border border-gray-500 flex justify-center ">
-                    <p>Orange</p>
-                  </div>
-                  <div className="p-2 w-[120px] border border-gray-500 flex justify-center ">
-                    <p>Blue</p>
-                  </div>
+                  {colors.map((color, index) => (
+                    <div
+                      key={index}
+                      className="p-2 w-[120px] border border-gray-500 flex justify-center hover:transform hover:scale-105 cursor-pointer hover:shadow-[0px_0px_20px_rgba(202,_108,_230,_0.6)]"
+                    >
+                      <p>{color}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 

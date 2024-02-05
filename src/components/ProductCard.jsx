@@ -7,13 +7,13 @@ export default function ProductCard(props) {
     <Link to={`/${product.id}`}>
       <div
         key={product.id}
-        className="h-full hover:shadow-[10px_10px_10px_rgba(202,_108,_230,_0.3)] border border-gray-300 max-w-[360px]"
+        className="h-full hover:shadow-[0px_0px_20px_rgba(202,_108,_230,_0.6)]  transition-transform hover:scale-105 border border-gray-300 max-w-[360px]"
       >
         <div className="h-[280px]">
           <img
             src={product.thumbnail}
-            alt="productImg"
-            className="object-fill w-full h-full "
+            alt="product image"
+            className="object-fill w-full h-full"
           />
         </div>
         <div className="pb-3 pl-3">
