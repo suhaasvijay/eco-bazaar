@@ -38,10 +38,7 @@ export default function ProductPage() {
   }, [productData]);
 
   const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => {
-      window.location.reload();
-    }, 200);
+    window.location.reload();
   };
 
   return (
@@ -108,7 +105,7 @@ export default function ProductPage() {
                   <img
                     src={image}
                     alt="image 1"
-                    className="object-fill w-full h-full "
+                    className="object-fill w-full h-full"
                   />
                 </div>
               ))}
