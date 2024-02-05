@@ -209,7 +209,7 @@ export default function ProductPage() {
             <p className="my-10 text-3xl font-bold text-gray-800">
               Related Products
             </p>
-            <button onClick={() => handleClick()}>
+            <button>
               <div className="grid justify-between grid-cols-1 mx-auto md:grid-cols-2 lg:grid-cols-3 gap-7">
                 {relatedProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
