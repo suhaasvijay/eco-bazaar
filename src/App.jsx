@@ -22,19 +22,19 @@ function App() {
 
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <StartupLoader />
-      ) : (
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/:id" element={<ProductPage />} />
-            <Route path="/search" element={<SearchPage />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      )}
+      ) : ( */}
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/:id" element={<ProductPage />} />
+          <Route path="/search" element={<SearchPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+      {/* )} */}
     </>
   );
 }
